@@ -1,0 +1,193 @@
+[gd_scene format=3 uid="uid://bx1uivavhv8ig"]
+
+[ext_resource type="Script" uid="uid://dlt7imfsqbgxm" path="res://Scripts/CardManager.gd" id="1_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://c3mf0xccyyem6" path="res://Scenes/CardSlot.tscn" id="2_pbw6q"]
+[ext_resource type="Script" uid="uid://blgfq0g2kobcx" path="res://Scripts/PlayerHand.gd" id="3_v1gob"]
+[ext_resource type="Texture2D" uid="uid://cq8yhveysaomu" path="res://Assets/free_pixel_art_card_pack.png" id="4_jw32o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4podk"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 119, 26, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ekg7"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 158, 26, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43xav"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 197, 26, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qnxv"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 236, 26, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5rk8"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 275, 26, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyncd"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 314, 26, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3huko"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 353, 26, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36opb"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 392, 26, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmu6k"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 431, 26, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn32q"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 470, 26, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8smce"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 509, 26, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krtwo"]
+atlas = ExtResource("4_jw32o")
+region = Rect2(128, 548, 26, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3dxm6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4podk")
+}],
+"loop": 1,
+"name": &"01",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ekg7")
+}],
+"loop": 1,
+"name": &"02",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43xav")
+}],
+"loop": 1,
+"name": &"03",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qnxv")
+}],
+"loop": 1,
+"name": &"04",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5rk8")
+}],
+"loop": 1,
+"name": &"05",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyncd")
+}],
+"loop": 1,
+"name": &"06",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3huko")
+}],
+"loop": 1,
+"name": &"07",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36opb")
+}],
+"loop": 1,
+"name": &"08",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmu6k")
+}],
+"loop": 1,
+"name": &"09",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn32q")
+}],
+"loop": 1,
+"name": &"10",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8smce")
+}],
+"loop": 1,
+"name": &"11",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krtwo")
+}],
+"loop": 1,
+"name": &"12",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fixfo"]
+
+[node name="Main" type="Node2D" unique_id=970825641]
+
+[node name="CardManager" type="Node2D" parent="." unique_id=541129001]
+script = ExtResource("1_rgh2o")
+
+[node name="CardSlot" parent="." unique_id=985104266 instance=ExtResource("2_pbw6q")]
+position = Vector2(448, 664)
+
+[node name="CardSlot2" parent="." unique_id=1287517970 instance=ExtResource("2_pbw6q")]
+position = Vector2(640, 664)
+
+[node name="CardSlot3" parent="." unique_id=1049272507 instance=ExtResource("2_pbw6q")]
+position = Vector2(832, 664)
+
+[node name="CardSlot4" parent="." unique_id=532090443 instance=ExtResource("2_pbw6q")]
+position = Vector2(1024, 664)
+
+[node name="CardSlot5" parent="." unique_id=126534420 instance=ExtResource("2_pbw6q")]
+position = Vector2(1216, 664)
+
+[node name="CardSlot6" parent="." unique_id=474932837 instance=ExtResource("2_pbw6q")]
+position = Vector2(1408, 664)
+
+[node name="PlayerHand" type="Node2D" parent="." unique_id=1632175491]
+script = ExtResource("3_v1gob")
+
+[node name="Deck" type="Node2D" parent="." unique_id=1459565981]
+
+[node name="CardSlotImage" type="AnimatedSprite2D" parent="Deck" unique_id=1160965231]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_3dxm6")
+animation = &"01"
+
+[node name="Area2D" type="Area2D" parent="Deck" unique_id=102037061]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deck/Area2D" unique_id=241529130]
+shape = SubResource("RectangleShape2D_fixfo")
