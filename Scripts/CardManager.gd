@@ -4,6 +4,7 @@ extends Node2D
 const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_CARD_SLOT = 2
 const SNAP_DISTANCE = 80.0
+const DEFAULT_CARD_MOVE_SPEED = 0.1
 
 var screen_size
 var card_being_dragged
@@ -16,6 +17,7 @@ func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	#print(get_tree().get_nodes_in_group("card_slots"))
 	player_hand_reference = $"../PlayerHand"
+	$"../InputManager".connect("left_mouse_button_released", on_left_click_released)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,17 +28,6 @@ func _process(delta: float) -> void:
 												clamp(mouse_pos.x, 0, screen_size.x), 
 												clamp(mouse_pos.y, 0, screen_size.y)
 											)
-
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			var card = raycast_check_for_card()
-			if card:
-				start_drag(card)
-		else:
-			if card_being_dragged:
-				finish_drag()
 
 
 func start_drag(card):
@@ -67,7 +58,7 @@ func finish_drag():
 		card_slot_found.card_in_slot = true
 		card_being_dragged.current_slot = card_slot_found
 	else:
-		player_hand_reference.add_card_to_hand(card_being_dragged)
+		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
 
 	card_being_dragged = null
 
@@ -75,6 +66,11 @@ func finish_drag():
 func connect_card_signals(card):
 	card.connect("hovered", on_hovered_over_card)
 	card.connect("hovered_off", on_hovered_off_card)
+
+
+func on_left_click_released():
+	if card_being_dragged:
+		finish_drag()
 
 
 func on_hovered_over_card(card):
