@@ -5,6 +5,7 @@ signal hovered
 signal hovered_off
 
 var starting_position
+var starting_rotation = 0.0
 
 
 var current_slot = null

@@ -37,6 +37,9 @@ func start_drag(card):
 
 	card_being_dragged = card
 	card.scale = Vector2(5, 5)
+	# Straighten the card out of the fan while it's being dragged
+	var tween = create_tween()
+	tween.tween_property(card, "rotation", 0.0, DEFAULT_CARD_MOVE_SPEED)
 	
 
 func finish_drag():
