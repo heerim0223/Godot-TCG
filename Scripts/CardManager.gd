@@ -10,6 +10,7 @@ var screen_size
 var card_being_dragged
 var is_hovering_on_card
 var player_hand_reference
+var cost_reference
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +18,7 @@ func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	#print(get_tree().get_nodes_in_group("card_slots"))
 	player_hand_reference = $"../PlayerHand"
+	cost_reference = $"../Cost"
 	$"../InputManager".connect("left_mouse_button_released", on_left_click_released)
 
 
@@ -32,6 +34,8 @@ func _process(delta: float) -> void:
 
 func start_drag(card):
 	if card.current_slot:
+		# Picking a played card back up refunds its cost
+		cost_reference.refund_cost(card.cost)
 		card.current_slot.card_in_slot = false
 		card.current_slot = null
 
@@ -47,7 +51,9 @@ func finish_drag():
 
 	var card_slot_found = get_nearest_card_slot()
 
-	if card_slot_found:
+	if card_slot_found and cost_reference.can_afford(card_being_dragged.cost):
+		cost_reference.spend_cost(card_being_dragged.cost)
+
 		var tween = create_tween()
 		tween.tween_property(
 			card_being_dragged,
@@ -61,6 +67,7 @@ func finish_drag():
 		card_slot_found.card_in_slot = true
 		card_being_dragged.current_slot = card_slot_found
 	else:
+		# Not enough cost left (or no empty slot found): return the card to hand
 		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
 
 	card_being_dragged = null

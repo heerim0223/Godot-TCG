@@ -5,7 +5,7 @@ const CARD_SCENE_PATH = "res://Scenes/Card.tscn"
 const CARD_DRAW_SPEED = 0.2
 
 # Name of the faction folder under Assets/Cards to build the deck from (e.g. "Humans", "Orcs")
-@export var deck_faction: String = "Nomads"
+@export var deck_faction: String = "Demons"
 # How many copies of each of that faction's 4 cards to include
 @export var copies_per_card: int = 2
 
@@ -53,6 +53,9 @@ func draw_card():
 
 	new_card.get_node("Attack").text = str(card_database_reference.CARDS[card_drawn_name][0])
 	new_card.get_node("Health").text = str(card_database_reference.CARDS[card_drawn_name][1])
+
+	new_card.card_name = card_drawn_name
+	new_card.cost = card_database_reference.CARDS[card_drawn_name][2]
 
 	$"../CardManager".add_child(new_card)
 	new_card.name = "Card"

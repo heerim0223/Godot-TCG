@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cc25bsoenp0yx"]
+
+[ext_resource type="FontFile" uid="uid://b5jteyy6gj4kn" path="res://Fonts/BoldPixels.ttf" id="1_860ru"]
+[ext_resource type="Script" uid="uid://dcrxguy3gcuyj" path="res://Scripts/Cost.gd" id="2_cost01"]
+
+[node name="Cost" type="Node2D" unique_id=1074095220]
+script = ExtResource("2_cost01")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1705450036]
+offset_left = 64.0
+offset_top = 744.0
+offset_right = 91.2
+offset_bottom = 760.4
+scale = Vector2(5, 5)
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_860ru")
+text = "........"
+horizontal_alignment = 1
+vertical_alignment = 1

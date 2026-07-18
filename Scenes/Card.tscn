@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dmfp5r8t18pgt" path="res://Assets/Cards/Humans/back.png" id="2_3m7nw"]
 [ext_resource type="FontFile" uid="uid://b5jteyy6gj4kn" path="res://Fonts/BoldPixels.ttf" id="3_h8wm0"]
 [ext_resource type="Texture2D" uid="uid://bxexh0n3285g6" path="res://Assets/Cards/Humans/0.png" id="3_kphy1"]
+[ext_resource type="Shader" path="res://Shaders/CardShine.gdshader" id="4_shine"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shine"]
+shader = ExtResource("4_shine")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glv2v"]
 size = Vector2(26, 33)
@@ -176,6 +180,7 @@ texture = ExtResource("2_3m7nw")
 
 [node name="CardImage" type="Sprite2D" parent="." unique_id=1673550367]
 z_index = -1
+material = SubResource("ShaderMaterial_shine")
 texture = ExtResource("3_kphy1")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=88039017]

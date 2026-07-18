@@ -1,76 +1,76 @@
-# Attack, Health
+# Health, Attack, Cost
 const CARDS = {
 	# Humans
-	"Humans_1": [1, 3],
-	"Humans_2": [1, 5],
-	"Humans_3": [1, 1],
-	"Humans_4": [2, 4],
+	"Humans_1": [1, 3, 1],
+	"Humans_2": [1, 5, 3],
+	"Humans_3": [5, 2, 4],
+	"Humans_4": [2, 4, 3],
 	
 	# Orcs
-	"Orcs_1": [1, 2],
-	"Orcs_2": [2, 4],
-	"Orcs_3": [2, 6],
-	"Orcs_4": [2, 0],
+	"Orcs_1": [1, 2, 1],
+	"Orcs_2": [2, 4, 2],
+	"Orcs_3": [2, 6, 4],
+	"Orcs_4": [2, 0, 3],
 	
 	# Skeletons
-	"Skeletons_1": [1, 2],
-	"Skeletons_2": [2, 3],
-	"Skeletons_3": [4, 3],
-	"Skeletons_4": [2, 4],
+	"Skeletons_1": [1, 2, 1],
+	"Skeletons_2": [2, 3, 3],
+	"Skeletons_3": [4, 3, 3],
+	"Skeletons_4": [2, 4, 2],
 	
 	# Zombies
-	"Zombies_1": [1, 1],
-	"Zombies_2": [1, 1],
-	"Zombies_3": [1, 1],
-	"Zombies_4": [1, 1],
+	"Zombies_1": [1, 1, 1],
+	"Zombies_2": [3, 2, 2],
+	"Zombies_3": [5, 4, 4],
+	"Zombies_4": [4, 3, 3],
 	
 	# Demons
-	"Demons_1": [1, 1],
-	"Demons_2": [3, 2],
-	"Demons_3": [5, 4],
-	"Demons_4": [4, 3],
+	"Demons_1": [1, 2, 1],
+	"Demons_2": [2, 4, 3],
+	"Demons_3": [6, 6, 6],
+	"Demons_4": [3, 5, 4],
 	
 	# Drows
-	"Drows_1": [3, 4],
-	"Drows_2": [3, 6],
-	"Drows_3": [3, 4],
-	"Drows_4": [4, 3],
+	"Drows_1": [3, 4, 3],
+	"Drows_2": [3, 6, 5],
+	"Drows_3": [3, 4, 4],
+	"Drows_4": [4, 3, 4],
 	
 	# Dwarves
-	"Dwarves_1": [3, 5],
-	"Dwarves_2": [3, 4],
-	"Dwarves_3": [6, 4],
-	"Dwarves_4": [3, 6],
+	"Dwarves_1": [3, 5, 3],
+	"Dwarves_2": [3, 4, 3],
+	"Dwarves_3": [6, 4, 4],
+	"Dwarves_4": [3, 6, 4],
 	
 	# Pirates
-	"Pirates_1": [3, 4],
-	"Pirates_2": [3, 4],
-	"Pirates_3": [3, 4],
-	"Pirates_4": [3, 4],
+	"Pirates_1": [3, 4, 3],
+	"Pirates_2": [3, 6, 4],
+	"Pirates_3": [4, 8, 6],
+	"Pirates_4": [3, 7, 5],
 	
 	# Goblins
-	"Goblins_1": [3, 4],
-	"Goblins_2": [3, 6],
-	"Goblins_3": [4, 8],
-	"Goblins_4": [3, 7],
+	"Goblins_1": [4, 5, 4],
+	"Goblins_2": [3, 4, 3],
+	"Goblins_3": [5, 6, 5],
+	"Goblins_4": [6, 8, 6],
 	
-	# Space_Soldier (folder name is singular: Assets/Cards/Space_Soldier)
-	"Space_Soldier_1": [3, 3],
-	"Space_Soldier_2": [5, 4],
-	"Space_Soldier_3": [4, 5],
-	"Space_Soldier_4": [4, 6],
+	# Space_Soldier
+	"Space_Soldier_1": [3, 3, 3],
+	"Space_Soldier_2": [5, 4, 4],
+	"Space_Soldier_3": [4, 5, 4],
+	"Space_Soldier_4": [4, 6, 5],
 	
 	# Aliens
-	"Aliens_1": [2, 3],
-	"Aliens_2": [3, 5],
-	"Aliens_3": [4, 4],
-	"Aliens_4": [3, 6],
+	"Aliens_1": [2, 3, 2],
+	"Aliens_2": [3, 5, 4],
+	"Aliens_3": [4, 4, 4],
+	"Aliens_4": [3, 6, 5],
 	
 	# Nomads
-	"Nomads_1": [2, 5],
-	"Nomads_2": [9, 9],
-	"Nomads_3": [4, 5],
-	"Nomads_4": [5, 5]
+	"Nomads_1": [2, 5, 4],
+	"Nomads_2": [9, 9, 7],
+	"Nomads_3": [4, 5, 4],
+	"Nomads_4": [5, 5, 5]
 }
 
 const CARDS_FOLDER = "res://Assets/Cards/"
