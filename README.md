@@ -8,3 +8,6 @@ A Trading Card Game (TCG) built with Godot 4.
 - Turn-based gameplay
 - Card effects and abilities
 - Modular game architecture
+
+## Preview
+![Gameplay](video.gif)
