@@ -1,0 +1,31 @@
+[gd_scene format=3]
+
+[ext_resource type="FontFile" uid="uid://b5jteyy6gj4kn" path="res://Fonts/BoldPixels.ttf" id="1_font"]
+[ext_resource type="Script" path="res://Scripts/LifeManager.gd" id="2_script"]
+
+[node name="LifeManager" type="Node2D"]
+script = ExtResource("2_script")
+
+[node name="EnemyLifeLabel" type="RichTextLabel" parent="."]
+offset_left = 1650.0
+offset_top = 40.0
+offset_right = 1880.0
+offset_bottom = 110.0
+theme_override_colors/default_color = Color(1, 0.4, 0.4, 1)
+theme_override_fonts/normal_font = ExtResource("1_font")
+theme_override_font_sizes/normal_font_size = 60
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerLifeLabel" type="RichTextLabel" parent="."]
+offset_left = 1650.0
+offset_top = 900.0
+offset_right = 1880.0
+offset_bottom = 970.0
+theme_override_colors/default_color = Color(0.4, 1, 0.4, 1)
+theme_override_fonts/normal_font = ExtResource("1_font")
+theme_override_font_sizes/normal_font_size = 60
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1

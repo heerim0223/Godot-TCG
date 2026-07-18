@@ -172,6 +172,7 @@ _data = {
 [node name="Card" type="Node2D" unique_id=228368091]
 position = Vector2(150, 550)
 scale = Vector2(5, 5)
+z_index = 1
 script = ExtResource("1_hael8")
 
 [node name="CardBackImage" type="Sprite2D" parent="." unique_id=1407675891]

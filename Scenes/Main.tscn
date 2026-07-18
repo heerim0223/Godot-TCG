@@ -10,6 +10,11 @@
 [ext_resource type="Script" uid="uid://dg78o5gqmn88r" path="res://Scripts/InputManager.gd" id="6_v1gob"]
 [ext_resource type="PackedScene" uid="uid://cc25bsoenp0yx" path="res://Scenes/Cost.tscn" id="8_50glp"]
 [ext_resource type="PackedScene" path="res://Scenes/CRTOverlay.tscn" id="9_crtov"]
+[ext_resource type="Script" uid="uid://dgmgp6c8wfxqb" path="res://Scripts/TurnManager.gd" id="10_turnmg"]
+[ext_resource type="PackedScene" path="res://Scenes/EnemyCardSlot.tscn" id="11_enslot"]
+[ext_resource type="Script" uid="uid://dbrm8h78pt2eo" path="res://Scripts/EnemyAI.gd" id="12_enemyai"]
+[ext_resource type="PackedScene" path="res://Scenes/LifeManager.tscn" id="13_lifemg"]
+[ext_resource type="PackedScene" path="res://Scenes/GameOverUI.tscn" id="14_gover"]
 
 [node name="Main" type="Node2D" unique_id=970825641]
 
@@ -20,62 +25,111 @@ z_index = -100
 position = Vector2(960, 544)
 texture = ExtResource("1_jw32o")
 
-[node name="TurnEndButton" type="Node2D" parent="BackGround" unique_id=1123188312]
+[node name="Player" type="Node2D" parent="." unique_id=1617559150]
 
-[node name="Sprite2D" type="Sprite2D" parent="BackGround/TurnEndButton" unique_id=95194901]
+[node name="PlayerHand" type="Node2D" parent="Player" unique_id=1632175491]
+script = ExtResource("3_v1gob")
+
+[node name="PlayerCost" parent="Player" unique_id=1074095220 instance=ExtResource("8_50glp")]
+
+[node name="PlayterDeck" parent="Player" unique_id=1753028985 instance=ExtResource("4_rgh2o")]
+z_index = -2
+position = Vector2(128, 896)
+script = ExtResource("5_pbw6q")
+
+[node name="TurnEndButton" type="Node2D" parent="Player" unique_id=1123188312]
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/TurnEndButton" unique_id=95194901]
 visible = false
 
-[node name="Button" type="Button" parent="BackGround/TurnEndButton" unique_id=410630193]
+[node name="Button" type="Button" parent="Player/TurnEndButton" unique_id=410630193]
 offset_left = 32.0
 offset_top = 640.0
 offset_right = 224.0
 offset_bottom = 672.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BackGround/TurnEndButton" unique_id=1864701281]
+[node name="RichTextLabel" type="RichTextLabel" parent="Player/TurnEndButton" unique_id=1864701281]
 offset_left = 32.0
 offset_top = 632.0
 offset_right = 224.0
 offset_bottom = 680.00006
+mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("2_vy5pj")
 theme_override_font_sizes/normal_font_size = 50
 text = "Turn Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardManager" type="Node2D" parent="." unique_id=541129001]
-script = ExtResource("1_rgh2o")
+[node name="Enemy" type="Node2D" parent="." unique_id=969175236]
 
-[node name="CardSlotManager" type="Node2D" parent="." unique_id=723617271]
+[node name="EnemyAI" type="Node2D" parent="Enemy" unique_id=805833661]
+script = ExtResource("12_enemyai")
 
-[node name="CardSlot" parent="CardSlotManager" unique_id=985104266 instance=ExtResource("2_pbw6q")]
+[node name="EnemyHand" type="Node2D" parent="Enemy" unique_id=599703798]
+visible = false
+
+[node name="EnemyCost" type="Node2D" parent="Enemy" unique_id=196782763]
+visible = false
+
+[node name="EnemyDeck" type="Node2D" parent="Enemy" unique_id=2042933217]
+visible = false
+
+[node name="EnemyTurnEndButton" type="Node2D" parent="Enemy" unique_id=1881401775]
+visible = false
+
+[node name="GameManager" type="Node2D" parent="." unique_id=320164186]
+
+[node name="CardSlotManager" type="Node2D" parent="GameManager" unique_id=723617271]
+
+[node name="CardSlot" parent="GameManager/CardSlotManager" unique_id=985104266 instance=ExtResource("2_pbw6q")]
 position = Vector2(480, 664)
 
-[node name="CardSlot2" parent="CardSlotManager" unique_id=1287517970 instance=ExtResource("2_pbw6q")]
+[node name="CardSlot2" parent="GameManager/CardSlotManager" unique_id=1287517970 instance=ExtResource("2_pbw6q")]
 position = Vector2(672, 664)
 
-[node name="CardSlot3" parent="CardSlotManager" unique_id=1049272507 instance=ExtResource("2_pbw6q")]
+[node name="CardSlot3" parent="GameManager/CardSlotManager" unique_id=1049272507 instance=ExtResource("2_pbw6q")]
 position = Vector2(864, 664)
 
-[node name="CardSlot4" parent="CardSlotManager" unique_id=532090443 instance=ExtResource("2_pbw6q")]
+[node name="CardSlot4" parent="GameManager/CardSlotManager" unique_id=532090443 instance=ExtResource("2_pbw6q")]
 position = Vector2(1056, 664)
 
-[node name="CardSlot5" parent="CardSlotManager" unique_id=126534420 instance=ExtResource("2_pbw6q")]
+[node name="CardSlot5" parent="GameManager/CardSlotManager" unique_id=126534420 instance=ExtResource("2_pbw6q")]
 position = Vector2(1248, 664)
 
-[node name="CardSlot6" parent="CardSlotManager" unique_id=474932837 instance=ExtResource("2_pbw6q")]
+[node name="CardSlot6" parent="GameManager/CardSlotManager" unique_id=474932837 instance=ExtResource("2_pbw6q")]
 position = Vector2(1440, 664)
 
-[node name="PlayerHand" type="Node2D" parent="." unique_id=1632175491]
-script = ExtResource("3_v1gob")
+[node name="CardManager" type="Node2D" parent="GameManager" unique_id=541129001]
+script = ExtResource("1_rgh2o")
 
-[node name="Deck" parent="." unique_id=1753028985 instance=ExtResource("4_rgh2o")]
-z_index = -2
-position = Vector2(128, 896)
-script = ExtResource("5_pbw6q")
+[node name="TurnManager" type="Node2D" parent="GameManager" unique_id=1371934179]
+script = ExtResource("10_turnmg")
 
-[node name="InputManager" type="Node2D" parent="." unique_id=241322703]
+[node name="LifeManager" parent="GameManager" unique_id=1398970079 instance=ExtResource("13_lifemg")]
+
+[node name="InputManager" type="Node2D" parent="GameManager" unique_id=241322703]
 script = ExtResource("6_v1gob")
 
-[node name="Cost" parent="." unique_id=1074095220 instance=ExtResource("8_50glp")]
+[node name="EnemyCardSlotManager" type="Node2D" parent="GameManager" unique_id=183112319]
 
-[node name="CRTOverlay" parent="." unique_id=1417888707 instance=ExtResource("9_crtov")]
+[node name="EnemyCardSlot" parent="GameManager/EnemyCardSlotManager" unique_id=1001910031 instance=ExtResource("11_enslot")]
+position = Vector2(480, 300)
+
+[node name="EnemyCardSlot2" parent="GameManager/EnemyCardSlotManager" unique_id=1880655164 instance=ExtResource("11_enslot")]
+position = Vector2(672, 300)
+
+[node name="EnemyCardSlot3" parent="GameManager/EnemyCardSlotManager" unique_id=1639255328 instance=ExtResource("11_enslot")]
+position = Vector2(864, 300)
+
+[node name="EnemyCardSlot4" parent="GameManager/EnemyCardSlotManager" unique_id=1730908785 instance=ExtResource("11_enslot")]
+position = Vector2(1056, 300)
+
+[node name="EnemyCardSlot5" parent="GameManager/EnemyCardSlotManager" unique_id=1119546134 instance=ExtResource("11_enslot")]
+position = Vector2(1248, 300)
+
+[node name="EnemyCardSlot6" parent="GameManager/EnemyCardSlotManager" unique_id=1384982814 instance=ExtResource("11_enslot")]
+position = Vector2(1440, 300)
+
+[node name="CRTOverlay" parent="." unique_id=270174636 instance=ExtResource("9_crtov")]
+
+[node name="GameOverUI" parent="." unique_id=1512232934 instance=ExtResource("14_gover")]

@@ -11,6 +11,7 @@ const CARD_DRAW_SPEED = 0.2
 
 var player_deck = []
 var card_database_reference
+var turn_manager_reference
 
 
 # Called when the node enters the scene tree for the first time.
@@ -33,6 +34,9 @@ func _ready() -> void:
 
 
 func draw_card():
+	if turn_manager_reference and (not turn_manager_reference.is_player_turn() or turn_manager_reference.is_game_over()):
+		return
+
 	var card_drawn_name = player_deck.pop_front()
 
 	# If player drew the last card in the deck, disable the pack
@@ -51,13 +55,12 @@ func draw_card():
 	card_image.texture = load(card_database_reference.get_face_path(card_drawn_name))
 	card_back_image.texture = load(card_database_reference.get_back_path(card_drawn_name))
 
-	new_card.get_node("Attack").text = str(card_database_reference.CARDS[card_drawn_name][0])
-	new_card.get_node("Health").text = str(card_database_reference.CARDS[card_drawn_name][1])
-
+	# CARDS entries are [health, attack, cost]
+	var stats = card_database_reference.CARDS[card_drawn_name]
 	new_card.card_name = card_drawn_name
-	new_card.cost = card_database_reference.CARDS[card_drawn_name][2]
+	new_card.set_stats(stats[0], stats[1], stats[2])
 
-	$"../CardManager".add_child(new_card)
+	$"../../GameManager/CardManager".add_child(new_card)
 	new_card.name = "Card"
 	new_card.global_position = $CardSlotImage.global_position
 	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)

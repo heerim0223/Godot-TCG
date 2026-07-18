@@ -11,14 +11,15 @@ var card_being_dragged
 var is_hovering_on_card
 var player_hand_reference
 var cost_reference
+var turn_manager_reference
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	#print(get_tree().get_nodes_in_group("card_slots"))
-	player_hand_reference = $"../PlayerHand"
-	cost_reference = $"../Cost"
+	player_hand_reference = $"../../Player/PlayerHand"
+	cost_reference = $"../../Player/PlayerCost"
 	$"../InputManager".connect("left_mouse_button_released", on_left_click_released)
 
 
@@ -33,10 +34,17 @@ func _process(delta: float) -> void:
 
 
 func start_drag(card):
+	if turn_manager_reference and (not turn_manager_reference.is_player_turn() or turn_manager_reference.is_game_over()):
+		return
+
+	if card.is_enemy_card:
+		return
+
 	if card.current_slot:
 		# Picking a played card back up refunds its cost
 		cost_reference.refund_cost(card.cost)
 		card.current_slot.card_in_slot = false
+		card.current_slot.occupying_card = null
 		card.current_slot = null
 
 	card_being_dragged = card
@@ -65,6 +73,7 @@ func finish_drag():
 		player_hand_reference.remove_card_from_hand(card_being_dragged)
 		
 		card_slot_found.card_in_slot = true
+		card_slot_found.occupying_card = card_being_dragged
 		card_being_dragged.current_slot = card_slot_found
 	else:
 		# Not enough cost left (or no empty slot found): return the card to hand
@@ -84,12 +93,18 @@ func on_left_click_released():
 
 
 func on_hovered_over_card(card):
+	if card.is_enemy_card:
+		return
+
 	if !is_hovering_on_card:
 		is_hovering_on_card = true
 		highlight_card(card, true)
 
 	
 func on_hovered_off_card(card):
+	if card.is_enemy_card:
+		return
+
 	if !card_being_dragged:
 		# if not dragging
 		highlight_card(card, false)
