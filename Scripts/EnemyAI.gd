@@ -115,3 +115,6 @@ func play_card(card_name: String, slot) -> void:
 	slot.card_in_slot = true
 	slot.occupying_card = new_card
 	new_card.current_slot = slot
+
+	AudioManager.play_card()
+	FX.spawn_impact(slot.global_position, get_tree().current_scene)

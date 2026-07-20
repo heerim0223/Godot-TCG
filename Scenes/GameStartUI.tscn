@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="FontFile" uid="uid://b5jteyy6gj4kn" path="res://Fonts/BoldPixels.ttf" id="1_font"]
+[ext_resource type="Script" path="res://Scripts/GameStartUI.gd" id="2_script"]
+
+[node name="GameStartUI" type="CanvasLayer"]
+layer = 128
+script = ExtResource("2_script")
+
+[node name="StartLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.85, 0.2, 1)
+theme_override_fonts/normal_font = ExtResource("1_font")
+theme_override_font_sizes/normal_font_size = 120
+text = "Battle Start!"
+horizontal_alignment = 1
+vertical_alignment = 1
