@@ -5,7 +5,7 @@ const CARD_SCENE_PATH = "res://Scenes/Card.tscn"
 const CARD_DRAW_SPEED = 0.2
 
 # Name of the faction folder under Assets/Cards to build the deck from (e.g. "Humans", "Orcs")
-@export var deck_faction: String = "Demons"
+@export var deck_faction: String = "Nomads"
 # How many copies of each of that faction's 4 cards to include
 @export var copies_per_card: int = 2
 

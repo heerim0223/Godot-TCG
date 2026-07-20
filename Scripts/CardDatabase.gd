@@ -21,7 +21,7 @@ const CARDS = {
 	# Zombies
 	"Zombies_1": [1, 1, 1],
 	"Zombies_2": [3, 2, 2],
-	"Zombies_3": [5, 4, 4],
+	"Zombies_3": [4, 5, 4],
 	"Zombies_4": [4, 3, 3],
 	
 	# Demons
