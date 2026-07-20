@@ -38,6 +38,7 @@ func draw_card():
 		return
 
 	var card_drawn_name = player_deck.pop_front()
+	AudioManager.play_draw()
 
 	# If player drew the last card in the deck, disable the pack
 	if player_deck.size() == 0:

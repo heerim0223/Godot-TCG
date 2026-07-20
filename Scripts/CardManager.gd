@@ -12,6 +12,12 @@ var is_hovering_on_card
 var player_hand_reference
 var cost_reference
 var turn_manager_reference
+var life_manager_reference
+var card_tooltip_reference
+
+# The player's currently selected attacker (a card already on the board that
+# has been clicked and is waiting for the player to click a target).
+var selected_attacker = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +26,12 @@ func _ready() -> void:
 	#print(get_tree().get_nodes_in_group("card_slots"))
 	player_hand_reference = $"../../Player/PlayerHand"
 	cost_reference = $"../../Player/PlayerCost"
+	life_manager_reference = get_node_or_null("../LifeManager")
+	card_tooltip_reference = get_node_or_null("../../CardTooltip")
 	$"../InputManager".connect("left_mouse_button_released", on_left_click_released)
+
+	if life_manager_reference:
+		life_manager_reference.enemy_life_clicked.connect(on_enemy_life_clicked)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,14 +49,15 @@ func start_drag(card):
 		return
 
 	if card.is_enemy_card:
+		# Clicking an enemy card only matters if we're aiming an attack at it.
+		try_attack_target(card)
 		return
 
 	if card.current_slot:
-		# Picking a played card back up refunds its cost
-		cost_reference.refund_cost(card.cost)
-		card.current_slot.card_in_slot = false
-		card.current_slot.occupying_card = null
-		card.current_slot = null
+		# Cards already on the board can't be picked back up into hand.
+		# Clicking one selects (or deselects) it as the attacker instead.
+		try_select_attacker(card)
+		return
 
 	card_being_dragged = card
 	card.scale = Vector2(5, 5)
@@ -75,11 +87,63 @@ func finish_drag():
 		card_slot_found.card_in_slot = true
 		card_slot_found.occupying_card = card_being_dragged
 		card_being_dragged.current_slot = card_slot_found
+
+		# Freshly played card: summoning sick until its controller's next turn.
+		card_being_dragged.summoning_sick = true
+		card_being_dragged.has_attacked = false
+		card_being_dragged.refresh_visual_state()
+
+		AudioManager.play_card()
+		FX.spawn_impact(card_slot_found.global_position, get_tree().current_scene)
 	else:
 		# Not enough cost left (or no empty slot found): return the card to hand
 		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
 
 	card_being_dragged = null
+
+
+func try_select_attacker(card) -> void:
+	if card.summoning_sick or card.has_attacked:
+		return
+
+	if selected_attacker == card:
+		deselect_attacker()
+		return
+
+	deselect_attacker()
+	selected_attacker = card
+	card.is_selected_attacker = true
+	card.refresh_visual_state()
+
+
+func deselect_attacker() -> void:
+	if selected_attacker and is_instance_valid(selected_attacker):
+		selected_attacker.is_selected_attacker = false
+		selected_attacker.refresh_visual_state()
+	selected_attacker = null
+
+
+# Called when the player clicks an enemy card while an attacker is selected.
+func try_attack_target(target_card) -> void:
+	if not selected_attacker:
+		return
+
+	var attacker = selected_attacker
+	deselect_attacker()
+	turn_manager_reference.perform_attack(attacker, target_card)
+
+
+# Called when the player clicks the enemy's life total directly (see LifeManager).
+func on_enemy_life_clicked() -> void:
+	if turn_manager_reference and (not turn_manager_reference.is_player_turn() or turn_manager_reference.is_game_over()):
+		return
+
+	if not selected_attacker:
+		return
+
+	var attacker = selected_attacker
+	deselect_attacker()
+	turn_manager_reference.perform_attack(attacker, null)
 
 
 func connect_card_signals(card):
@@ -93,6 +157,9 @@ func on_left_click_released():
 
 
 func on_hovered_over_card(card):
+	if card_tooltip_reference:
+		card_tooltip_reference.show_card(card)
+
 	if card.is_enemy_card:
 		return
 
@@ -102,6 +169,9 @@ func on_hovered_over_card(card):
 
 	
 func on_hovered_off_card(card):
+	if card_tooltip_reference:
+		card_tooltip_reference.hide_card()
+
 	if card.is_enemy_card:
 		return
 
@@ -114,6 +184,8 @@ func on_hovered_off_card(card):
 		
 		if new_card_hovered:
 			highlight_card(new_card_hovered, true)
+			if card_tooltip_reference:
+				card_tooltip_reference.show_card(new_card_hovered)
 		else:
 			is_hovering_on_card = false
 	

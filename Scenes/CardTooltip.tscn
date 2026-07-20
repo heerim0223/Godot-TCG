@@ -1,0 +1,49 @@
+[gd_scene format=3]
+
+[ext_resource type="FontFile" uid="uid://b5jteyy6gj4kn" path="res://Fonts/BoldPixels.ttf" id="1_font"]
+[ext_resource type="Script" path="res://Scripts/CardTooltip.gd" id="2_script"]
+
+[node name="CardTooltip" type="CanvasLayer"]
+layer = 110
+script = ExtResource("2_script")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = 40.0
+offset_top = 120.0
+offset_right = 340.0
+offset_bottom = 560.0
+mouse_filter = 2
+
+[node name="CardImage" type="TextureRect" parent="Panel"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 360.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="RichTextLabel" parent="Panel"]
+offset_left = 10.0
+offset_top = 365.0
+offset_right = 290.0
+offset_bottom = 405.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_font")
+theme_override_font_sizes/normal_font_size = 26
+text = "Card Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatsLabel" type="RichTextLabel" parent="Panel"]
+offset_left = 10.0
+offset_top = 400.0
+offset_right = 290.0
+offset_bottom = 435.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_font")
+theme_override_font_sizes/normal_font_size = 20
+text = "ATK 0   HP 0   COST 0"
+horizontal_alignment = 1
+vertical_alignment = 1

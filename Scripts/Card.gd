@@ -17,6 +17,13 @@ var attack: int = 0
 var health: int = 0
 var is_enemy_card: bool = false
 
+# Combat state. A freshly played card is "summoning sick" and can't attack
+# until its controller's next turn starts (see TurnManager.clear_summoning_sickness).
+# has_attacked tracks whether it has already used its attack this turn.
+var summoning_sick: bool = true
+var has_attacked: bool = false
+var is_selected_attacker: bool = false
+
 
 # Cards at or above this cost get the shine highlight effect
 const SHINE_COST_THRESHOLD = 5
@@ -61,6 +68,23 @@ func set_stats(attack_value: int, health_value: int, cost_value: int) -> void:
 	cost = cost_value
 	$Attack.text = str(attack)
 	$Health.text = str(health)
+
+
+# Tints the card to communicate its current combat state:
+# - normal color: enemy cards, cards not on the board, or player cards free to attack
+# - red tint: currently selected as the attacker
+# - grey tint: on the board but can't attack yet (summoning sick or already attacked)
+func refresh_visual_state() -> void:
+	if is_enemy_card or not current_slot:
+		modulate = Color(1, 1, 1)
+		return
+
+	if is_selected_attacker:
+		modulate = Color(1.0, 0.55, 0.55)
+	elif summoning_sick or has_attacked:
+		modulate = Color(0.55, 0.55, 0.55)
+	else:
+		modulate = Color(1, 1, 1)
 
 
 func take_damage(amount: int) -> void:
