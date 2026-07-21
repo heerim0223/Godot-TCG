@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://joyt7aaohj5s"
-path="res://.godot/imported/free_pixel_art_card_pack - 복사본.png-3e985767c56775ec51903186144fd731.ctex"
+uid="uid://dpsbwk182i3lf"
+path="res://.godot/imported/cards.png-fd3d658bb52775894c7a34069fd7bc85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/free_pixel_art_card_pack - 복사본.png"
-dest_files=["res://.godot/imported/free_pixel_art_card_pack - 복사본.png-3e985767c56775ec51903186144fd731.ctex"]
+source_file="res://Assets/cards.png"
+dest_files=["res://.godot/imported/cards.png-fd3d658bb52775894c7a34069fd7bc85.ctex"]
 
 [params]
 

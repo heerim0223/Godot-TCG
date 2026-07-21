@@ -20,8 +20,10 @@ func shake(strength: float = 8.0, duration: float = 0.2) -> void:
 	if not shake_target:
 		return
 
-	# Cancel any shake already in progress so rapid attacks don't fight each other.
-	var existing_tween = shake_target.get_meta("fx_shake_tween", null)
+	var existing_tween = null
+	if shake_target.has_meta("fx_shake_tween"):
+		existing_tween = shake_target.get_meta("fx_shake_tween")
+	
 	if existing_tween and existing_tween is Tween and existing_tween.is_valid():
 		existing_tween.kill()
 		shake_target.position = Vector2.ZERO
@@ -34,6 +36,7 @@ func shake(strength: float = 8.0, duration: float = 0.2) -> void:
 		var falloff = 1.0 - float(i) / float(steps)
 		var offset = Vector2(randf_range(-strength, strength), randf_range(-strength, strength)) * falloff
 		tween.tween_property(shake_target, "position", offset, duration / steps)
+	
 	tween.tween_property(shake_target, "position", Vector2.ZERO, duration / steps)
 
 

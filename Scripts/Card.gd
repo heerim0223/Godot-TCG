@@ -88,7 +88,11 @@ func refresh_visual_state() -> void:
 		_start_selection_pulse()
 	elif summoning_sick or has_attacked:
 		_stop_selection_pulse()
-		modulate = Color(0.55, 0.55, 0.55)
+		if GameSettings.reduce_animation:
+			modulate = Color(0.55, 0.55, 0.55)
+		else:
+			modulate = Color(0.55, 0.55, 0.55)  # If you Keep Tween, then erase this annotation
+			# modulate = Color(0.55, 0.55, 0.55)  # With out Tween
 	else:
 		_stop_selection_pulse()
 		modulate = Color(1, 1, 1)

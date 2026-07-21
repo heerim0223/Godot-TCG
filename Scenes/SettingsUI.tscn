@@ -1,7 +1,7 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bomre3vx23p2u"]
 
 [ext_resource type="FontFile" uid="uid://b5jteyy6gj4kn" path="res://Fonts/BoldPixels.ttf" id="1_font"]
-[ext_resource type="Script" path="res://Scripts/SettingsUI.gd" id="2_script"]
+[ext_resource type="Script" uid="uid://lofm2pa0wimm" path="res://Scripts/SettingsUI.gd" id="2_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.08, 0.08, 0.1, 0.95)
@@ -12,14 +12,15 @@ border_width_bottom = 4
 border_color = Color(1, 0.85, 0.2, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
-corner_radius_bottom_left = 10
 corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[node name="SettingsUI" type="CanvasLayer"]
+[node name="SettingsUI" type="CanvasLayer" unique_id=1549679355]
 layer = 150
 script = ExtResource("2_script")
 
-[node name="OpenButton" type="Button" parent="."]
+[node name="OpenButton" type="Button" parent="." unique_id=1580590538]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -190.0
@@ -30,22 +31,22 @@ theme_override_fonts/font = ExtResource("1_font")
 theme_override_font_sizes/font_size = 26
 text = "Settings"
 
-[node name="Overlay" type="Control" parent="."]
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="Overlay" type="Control" parent="." unique_id=1086156191]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="DimBackground" type="ColorRect" parent="Overlay"]
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="DimBackground" type="ColorRect" parent="Overlay" unique_id=456068762]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 0.6)
-mouse_filter = 0
 
-[node name="Panel" type="Panel" parent="Overlay"]
+[node name="Panel" type="Panel" parent="Overlay" unique_id=2052600131]
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -56,9 +57,8 @@ offset_right = 350.0
 offset_bottom = 400.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="Margin" type="MarginContainer" parent="Overlay/Panel"]
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="Margin" type="MarginContainer" parent="Overlay/Panel" unique_id=1148383813]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme_override_constants/margin_left = 28
@@ -66,153 +66,222 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 28
 theme_override_constants/margin_bottom = 24
 
-[node name="Content" type="VBoxContainer" parent="Overlay/Panel/Margin"]
+[node name="Content" type="VBoxContainer" parent="Overlay/Panel/Margin" unique_id=1993026324]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="TitleLabel" type="Label" parent="Overlay/Panel/Margin/Content"]
+[node name="TitleLabel" type="Label" parent="Overlay/Panel/Margin/Content" unique_id=1467107126]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
 theme_override_fonts/font = ExtResource("1_font")
 theme_override_font_sizes/font_size = 40
-theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
-horizontal_alignment = 1
 text = "Settings"
+horizontal_alignment = 1
 
-[node name="HSeparator1" type="HSeparator" parent="Overlay/Panel/Margin/Content"]
+[node name="HSeparator1" type="HSeparator" parent="Overlay/Panel/Margin/Content" unique_id=950994929]
+layout_mode = 2
 
-[node name="FactionSectionLabel" type="Label" parent="Overlay/Panel/Margin/Content"]
+[node name="FactionSectionLabel" type="Label" parent="Overlay/Panel/Margin/Content" unique_id=1001446229]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_font")
 theme_override_font_sizes/font_size = 22
 text = "Race (Temporary)"
 
-[node name="FactionOption" type="OptionButton" parent="Overlay/Panel/Margin/Content"]
+[node name="FactionOption" type="OptionButton" parent="Overlay/Panel/Margin/Content" unique_id=1359551812]
 custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
 
-[node name="FactionNoteLabel" type="Label" parent="Overlay/Panel/Margin/Content"]
-theme_override_font_sizes/font_size = 14
+[node name="FactionNoteLabel" type="Label" parent="Overlay/Panel/Margin/Content" unique_id=545321135]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
+theme_override_font_sizes/font_size = 14
 text = "Applies the next time a match starts."
 
-[node name="HSeparator2" type="HSeparator" parent="Overlay/Panel/Margin/Content"]
+[node name="HSeparator2" type="HSeparator" parent="Overlay/Panel/Margin/Content" unique_id=1727448758]
+layout_mode = 2
 
-[node name="AudioSectionLabel" type="Label" parent="Overlay/Panel/Margin/Content"]
+[node name="AudioSectionLabel" type="Label" parent="Overlay/Panel/Margin/Content" unique_id=1037020547]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_font")
 theme_override_font_sizes/font_size = 22
 text = "Audio"
 
-[node name="MasterRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content"]
+[node name="MasterRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=1062389849]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="MasterLabel" type="Label" parent="Overlay/Panel/Margin/Content/MasterRow"]
+[node name="MasterLabel" type="Label" parent="Overlay/Panel/Margin/Content/MasterRow" unique_id=1638332352]
 custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 text = "Master Volume"
 
-[node name="MasterSlider" type="HSlider" parent="Overlay/Panel/Margin/Content/MasterRow"]
+[node name="MasterSlider" type="HSlider" parent="Overlay/Panel/Margin/Content/MasterRow" unique_id=1863564954]
 custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-max_value = 100.0
-step = 1.0
 value = 100.0
 
-[node name="MasterValueLabel" type="Label" parent="Overlay/Panel/Margin/Content/MasterRow"]
+[node name="MasterValueLabel" type="Label" parent="Overlay/Panel/Margin/Content/MasterRow" unique_id=1177941088]
 custom_minimum_size = Vector2(50, 0)
-horizontal_alignment = 2
+layout_mode = 2
 text = "100%"
+horizontal_alignment = 2
 
-[node name="BGMRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content"]
+[node name="BGMRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=1719324645]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="BGMLabel" type="Label" parent="Overlay/Panel/Margin/Content/BGMRow"]
+[node name="BGMLabel" type="Label" parent="Overlay/Panel/Margin/Content/BGMRow" unique_id=498582781]
 custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 text = "BGM Volume"
 
-[node name="BGMSlider" type="HSlider" parent="Overlay/Panel/Margin/Content/BGMRow"]
+[node name="BGMSlider" type="HSlider" parent="Overlay/Panel/Margin/Content/BGMRow" unique_id=1854796782]
 custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-max_value = 100.0
-step = 1.0
 value = 100.0
 
-[node name="BGMValueLabel" type="Label" parent="Overlay/Panel/Margin/Content/BGMRow"]
+[node name="BGMValueLabel" type="Label" parent="Overlay/Panel/Margin/Content/BGMRow" unique_id=196577878]
 custom_minimum_size = Vector2(50, 0)
-horizontal_alignment = 2
+layout_mode = 2
 text = "100%"
+horizontal_alignment = 2
 
-[node name="SFXRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content"]
+[node name="SFXRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=307106498]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="SFXLabel" type="Label" parent="Overlay/Panel/Margin/Content/SFXRow"]
+[node name="SFXLabel" type="Label" parent="Overlay/Panel/Margin/Content/SFXRow" unique_id=1986924957]
 custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 text = "SFX Volume"
 
-[node name="SFXSlider" type="HSlider" parent="Overlay/Panel/Margin/Content/SFXRow"]
+[node name="SFXSlider" type="HSlider" parent="Overlay/Panel/Margin/Content/SFXRow" unique_id=1024088043]
 custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-max_value = 100.0
-step = 1.0
 value = 100.0
 
-[node name="SFXValueLabel" type="Label" parent="Overlay/Panel/Margin/Content/SFXRow"]
+[node name="SFXValueLabel" type="Label" parent="Overlay/Panel/Margin/Content/SFXRow" unique_id=477185162]
 custom_minimum_size = Vector2(50, 0)
-horizontal_alignment = 2
+layout_mode = 2
 text = "100%"
+horizontal_alignment = 2
 
-[node name="MuteRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content"]
+[node name="MuteRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=160998766]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="MuteLabel" type="Label" parent="Overlay/Panel/Margin/Content/MuteRow"]
+[node name="MuteLabel" type="Label" parent="Overlay/Panel/Margin/Content/MuteRow" unique_id=103871132]
 custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 text = "Mute"
 
-[node name="MuteCheck" type="CheckButton" parent="Overlay/Panel/Margin/Content/MuteRow"]
+[node name="MuteCheck" type="CheckButton" parent="Overlay/Panel/Margin/Content/MuteRow" unique_id=1995717640]
+layout_mode = 2
 
-[node name="HSeparator3" type="HSeparator" parent="Overlay/Panel/Margin/Content"]
+[node name="HSeparator3" type="HSeparator" parent="Overlay/Panel/Margin/Content" unique_id=575128475]
+layout_mode = 2
 
-[node name="GraphicsSectionLabel" type="Label" parent="Overlay/Panel/Margin/Content"]
+[node name="GraphicsSectionLabel" type="Label" parent="Overlay/Panel/Margin/Content" unique_id=1793901510]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_font")
 theme_override_font_sizes/font_size = 22
 text = "Graphics"
 
-[node name="ScreenModeRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content"]
+[node name="ScreenModeRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=1394774885]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="ScreenModeLabel" type="Label" parent="Overlay/Panel/Margin/Content/ScreenModeRow"]
+[node name="ScreenModeLabel" type="Label" parent="Overlay/Panel/Margin/Content/ScreenModeRow" unique_id=1667201120]
 custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 text = "Screen Mode"
 
-[node name="ScreenModeOption" type="OptionButton" parent="Overlay/Panel/Margin/Content/ScreenModeRow"]
+[node name="ScreenModeOption" type="OptionButton" parent="Overlay/Panel/Margin/Content/ScreenModeRow" unique_id=1961839855]
 custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
 
-[node name="ResolutionRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content"]
+[node name="ResolutionRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=1383335990]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="ResolutionLabel" type="Label" parent="Overlay/Panel/Margin/Content/ResolutionRow"]
+[node name="ResolutionLabel" type="Label" parent="Overlay/Panel/Margin/Content/ResolutionRow" unique_id=852771125]
 custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 text = "Resolution"
 
-[node name="ResolutionOption" type="OptionButton" parent="Overlay/Panel/Margin/Content/ResolutionRow"]
+[node name="ResolutionOption" type="OptionButton" parent="Overlay/Panel/Margin/Content/ResolutionRow" unique_id=1548991142]
 custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
 
-[node name="VSyncRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content"]
+[node name="VSyncRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=1277104319]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="VSyncLabel" type="Label" parent="Overlay/Panel/Margin/Content/VSyncRow"]
+[node name="VSyncLabel" type="Label" parent="Overlay/Panel/Margin/Content/VSyncRow" unique_id=199022761]
 custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 text = "VSync"
 
-[node name="VSyncCheck" type="CheckButton" parent="Overlay/Panel/Margin/Content/VSyncRow"]
+[node name="VSyncCheck" type="CheckButton" parent="Overlay/Panel/Margin/Content/VSyncRow" unique_id=1256137167]
+layout_mode = 2
 
-[node name="FPSRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content"]
+[node name="FPSRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=2018521417]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="FPSLabel" type="Label" parent="Overlay/Panel/Margin/Content/FPSRow"]
+[node name="FPSLabel" type="Label" parent="Overlay/Panel/Margin/Content/FPSRow" unique_id=378546759]
 custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 text = "Show FPS"
 
-[node name="FPSCheck" type="CheckButton" parent="Overlay/Panel/Margin/Content/FPSRow"]
+[node name="FPSCheck" type="CheckButton" parent="Overlay/Panel/Margin/Content/FPSRow" unique_id=1819837795]
+layout_mode = 2
 
-[node name="HSeparator4" type="HSeparator" parent="Overlay/Panel/Margin/Content"]
+[node name="AnimationSpeedRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=1012007881]
+layout_mode = 2
+theme_override_constants/separation = 12
 
-[node name="CloseButton" type="Button" parent="Overlay/Panel/Margin/Content"]
+[node name="AnimationSpeedLabel" type="Label" parent="Overlay/Panel/Margin/Content/AnimationSpeedRow" unique_id=1994963460]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Animation Speed"
+
+[node name="AnimationSpeedSlider" type="HSlider" parent="Overlay/Panel/Margin/Content/AnimationSpeedRow" unique_id=1793627824]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.05
+max_value = 0.5
+step = 0.01
+value = 0.15000000000000002
+
+[node name="AnimationSpeedValueLabel" type="Label" parent="Overlay/Panel/Margin/Content/AnimationSpeedRow" unique_id=2102562426]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "0.15"
+horizontal_alignment = 2
+
+[node name="ReduceAnimationRow" type="HBoxContainer" parent="Overlay/Panel/Margin/Content" unique_id=2124091838]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ReduceAnimationLabel" type="Label" parent="Overlay/Panel/Margin/Content/ReduceAnimationRow" unique_id=1825626961]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Reduce Animation"
+
+[node name="ReduceAnimationCheck" type="CheckButton" parent="Overlay/Panel/Margin/Content/ReduceAnimationRow" unique_id=1872855734]
+layout_mode = 2
+
+[node name="HSeparator4" type="HSeparator" parent="Overlay/Panel/Margin/Content" unique_id=2088226568]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="Overlay/Panel/Margin/Content" unique_id=620970252]
 custom_minimum_size = Vector2(160, 44)
+layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_font")
 theme_override_font_sizes/font_size = 24

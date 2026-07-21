@@ -5,6 +5,7 @@ extends Node
 # calls the setters below, which apply the change immediately and persist
 # it to user://settings.cfg so it's remembered next launch.
 
+
 signal audio_settings_changed
 signal graphics_settings_changed
 
@@ -36,8 +37,17 @@ var show_fps: bool = false
 
 # --- Gameplay (temporary/experimental: overrides Deck.gd's exported faction) ---
 var player_faction: String = "Nomads"
-
 var _fps_label: Label = null
+
+
+# --- Animation ---
+var card_animation_speed: float = 0.15
+
+
+# --- Accessibility ---
+var font_size_multiplier: float = 1.0
+var colorblind_mode: bool = false
+var reduce_animation: bool = false
 
 
 func _ready() -> void:
@@ -188,6 +198,12 @@ func load_settings() -> void:
 	resolution_index = config.get_value("graphics", "resolution_index", resolution_index)
 	vsync_enabled = config.get_value("graphics", "vsync_enabled", vsync_enabled)
 	show_fps = config.get_value("graphics", "show_fps", show_fps)
+	
+	card_animation_speed = config.get_value("animation", "card_animation_speed", card_animation_speed)
+	
+	reduce_animation = config.get_value("accessibility", "reduce_animation", reduce_animation)
+	font_size_multiplier = config.get_value("accessibility", "font_size_multiplier", font_size_multiplier)
+	colorblind_mode = config.get_value("accessibility", "colorblind_mode", colorblind_mode)
 
 	player_faction = config.get_value("gameplay", "player_faction", player_faction)
 
@@ -204,6 +220,12 @@ func save_settings() -> void:
 	config.set_value("graphics", "resolution_index", resolution_index)
 	config.set_value("graphics", "vsync_enabled", vsync_enabled)
 	config.set_value("graphics", "show_fps", show_fps)
+
+	config.set_value("animation", "card_animation_speed", card_animation_speed)
+
+	config.set_value("accessibility", "reduce_animation", reduce_animation)
+	config.set_value("accessibility", "font_size_multiplier", font_size_multiplier)
+	config.set_value("accessibility", "colorblind_mode", colorblind_mode)
 
 	config.set_value("gameplay", "player_faction", player_faction)
 

@@ -78,6 +78,10 @@ func _on_turn_end_button_pressed() -> void:
 
 
 func start_player_turn() -> void:
+	var game_start_ui = get_node_or_null("../GameStartUI")
+	if game_start_ui and not game_start_ui.is_queued_for_deletion():
+		game_start_ui.visible = true
+		
 	current_turn = Turn.PLAYER
 	turn_number += 1
 	cost_reference.reset_cost()
@@ -258,3 +262,8 @@ func _on_game_over(winner: String) -> void:
 
 	if game_over_ui_reference:
 		game_over_ui_reference.show_result(winner == "Player")
+	else:
+		# fallback (임시)
+		var ui = preload("res://Scenes/GameOverUI.tscn").instantiate()
+		get_tree().current_scene.add_child(ui)
+		ui.show_result(winner == "Player")

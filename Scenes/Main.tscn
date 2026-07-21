@@ -14,12 +14,12 @@
 [ext_resource type="PackedScene" path="res://Scenes/EnemyCardSlot.tscn" id="11_enslot"]
 [ext_resource type="Script" uid="uid://dbrm8h78pt2eo" path="res://Scripts/EnemyAI.gd" id="12_enemyai"]
 [ext_resource type="PackedScene" path="res://Scenes/LifeManager.tscn" id="13_lifemg"]
-[ext_resource type="PackedScene" path="res://Scenes/GameOverUI.tscn" id="14_gover"]
+[ext_resource type="PackedScene" uid="uid://hb2mpbkw3sm0" path="res://Scenes/GameOverUI.tscn" id="14_gover"]
 [ext_resource type="PackedScene" path="res://Scenes/CardTooltip.tscn" id="15_ctool"]
 [ext_resource type="PackedScene" path="res://Scenes/GameStartUI.tscn" id="16_gstart"]
 [ext_resource type="Script" uid="uid://b2sl4cf523458" path="res://Scripts/EnemyHand.gd" id="17_ehand"]
 [ext_resource type="PackedScene" path="res://Scenes/EnemyDeck.tscn" id="18_edeck"]
-[ext_resource type="PackedScene" path="res://Scenes/SettingsUI.tscn" id="19_settings"]
+[ext_resource type="PackedScene" uid="uid://bomre3vx23p2u" path="res://Scenes/SettingsUI.tscn" id="19_settings"]
 
 [node name="Main" type="Node2D" unique_id=970825641]
 
@@ -137,6 +137,7 @@ position = Vector2(1440, 300)
 [node name="CRTOverlay" parent="." unique_id=270174636 instance=ExtResource("9_crtov")]
 
 [node name="GameOverUI" parent="." unique_id=1512232934 instance=ExtResource("14_gover")]
+layer = 300
 
 [node name="CardTooltip" parent="." unique_id=804836485 instance=ExtResource("15_ctool")]
 

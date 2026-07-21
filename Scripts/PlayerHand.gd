@@ -1,9 +1,13 @@
 extends Node2D
 
 
+@export var card_move_speed: float = 0.15   # control at settings ui
+
+
 const CARD_WIDTH = 120
 const HAND_Y_POSITION = 890
 const DEFAULT_CARD_MOVE_SPEED = 0.1
+
 
 # Hearthstone-style fan settings
 const MAX_FAN_ANGLE_DEG = 6.0     # rotation added per card step away from the center card
@@ -12,13 +16,21 @@ const FAN_RADIUS = 1400.0         # arc "tightness" - bigger = flatter/shallower
 
 
 var player_hand = []
-var center_screen_x
+var center_screen_x: float = 0.0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
-	
+	get_viewport().size_changed.connect(_update_center_x)
+
+	card_move_speed = GameSettings.card_animation_speed
+
+
+func _update_center_x() -> void:
+	center_screen_x = get_viewport().size.x / 2.0
+	update_hand_positions(0.0)  # 즉시 재배치
+
 
 func add_card_to_hand(card, speed):
 	if card not in player_hand:
@@ -40,7 +52,7 @@ func update_hand_positions(speed):
 		# Cards closer to the fan's center should sit on top, like Hearthstone
 		card.z_index = int(100.0 - abs(angle_deg))
 
-		animate_card_to_position(card, new_position, new_rotation, speed)
+		animate_card_to_position(card, new_position, new_rotation, card_move_speed)
 
 
 # Angle (degrees) for the card at this index, spread evenly around the hand's center card
