@@ -18,10 +18,16 @@ var sfx_player: AudioStreamPlayer
 
 
 func _ready() -> void:
+	_ensure_bus("BGM")
+	_ensure_bus("SFX")
+
 	bgm_player = AudioStreamPlayer.new()
 	sfx_player = AudioStreamPlayer.new()
 	add_child(bgm_player)
 	add_child(sfx_player)
+
+	bgm_player.bus = "BGM"
+	sfx_player.bus = "SFX"
 
 	bgm_player.volume_db = -10.0
 	sfx_player.volume_db = -4.0
@@ -32,6 +38,19 @@ func _ready() -> void:
 			bgm_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
 		bgm_player.stream = bgm_stream
 		bgm_player.play()
+
+
+# Creates a bus with this name (routed into Master) if it doesn't exist yet.
+# GameSettings then drives these by name via AudioServer, independent of
+# whatever volume_db each individual AudioStreamPlayer is set to above.
+func _ensure_bus(bus_name: String) -> void:
+	if AudioServer.get_bus_index(bus_name) != -1:
+		return
+
+	var index = AudioServer.bus_count
+	AudioServer.add_bus(index)
+	AudioServer.set_bus_name(index, bus_name)
+	AudioServer.set_bus_send(index, "Master")
 
 
 func play_draw() -> void:
@@ -51,11 +70,3 @@ func _play_sfx(path: String) -> void:
 		return
 	sfx_player.stream = load(path)
 	sfx_player.play()
-
-
-func set_bgm_volume_db(value: float) -> void:
-	bgm_player.volume_db = value
-
-
-func set_sfx_volume_db(value: float) -> void:
-	sfx_player.volume_db = value

@@ -28,6 +28,10 @@ var is_selected_attacker: bool = false
 # Cards at or above this cost get the shine highlight effect
 const SHINE_COST_THRESHOLD = 5
 
+# Looping tween that pulses a selected attacker so it's unmistakable which
+# card is about to attack, separate from the one-shot "pop" tween below.
+var _selection_pulse_tween: Tween = null
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -77,14 +81,41 @@ func set_stats(attack_value: int, health_value: int, cost_value: int) -> void:
 func refresh_visual_state() -> void:
 	if is_enemy_card or not current_slot:
 		modulate = Color(1, 1, 1)
+		_stop_selection_pulse()
 		return
 
 	if is_selected_attacker:
-		modulate = Color(1.0, 0.55, 0.55)
+		_start_selection_pulse()
 	elif summoning_sick or has_attacked:
+		_stop_selection_pulse()
 		modulate = Color(0.55, 0.55, 0.55)
 	else:
+		_stop_selection_pulse()
 		modulate = Color(1, 1, 1)
+
+
+# Kicks off a quick scale "pop" so the card immediately draws the eye the
+# moment it's selected, then keeps a soft red pulse looping while it stays
+# selected as the attacker - much easier to spot at a glance than a flat tint.
+func _start_selection_pulse() -> void:
+	if _selection_pulse_tween and _selection_pulse_tween.is_valid():
+		return
+
+	var pop_tween = create_tween()
+	var base_scale = scale
+	pop_tween.tween_property(self, "scale", base_scale * 1.15, 0.1).set_trans(Tween.TRANS_BACK)
+	pop_tween.tween_property(self, "scale", base_scale, 0.1)
+
+	_selection_pulse_tween = create_tween()
+	_selection_pulse_tween.set_loops()
+	_selection_pulse_tween.tween_property(self, "modulate", Color(1.0, 0.3, 0.3), 0.4).set_trans(Tween.TRANS_SINE)
+	_selection_pulse_tween.tween_property(self, "modulate", Color(1.0, 0.65, 0.65), 0.4).set_trans(Tween.TRANS_SINE)
+
+
+func _stop_selection_pulse() -> void:
+	if _selection_pulse_tween and _selection_pulse_tween.is_valid():
+		_selection_pulse_tween.kill()
+	_selection_pulse_tween = null
 
 
 func take_damage(amount: int) -> void:
@@ -96,6 +127,8 @@ func take_damage(amount: int) -> void:
 
 
 func die() -> void:
+	_stop_selection_pulse()
+
 	if current_slot:
 		current_slot.card_in_slot = false
 		current_slot.occupying_card = null

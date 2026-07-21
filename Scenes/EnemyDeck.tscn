@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://dmfp5r8t18pgt" path="res://Assets/Cards/Humans/back.png" id="1_back"]
+[ext_resource type="FontFile" uid="uid://b5jteyy6gj4kn" path="res://Fonts/BoldPixels.ttf" id="2_font"]
+[ext_resource type="Script" path="res://Scripts/EnemyDeck.gd" id="3_script"]
+
+[node name="EnemyDeck" type="Node2D"]
+scale = Vector2(5, 5)
+script = ExtResource("3_script")
+
+[node name="CardSlotImage" type="Sprite2D" parent="."]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("1_back")
+
+[node name="CardSlotLabel" type="RichTextLabel" parent="."]
+offset_left = -12.799999
+offset_top = -16.0
+offset_right = 38.399998
+offset_bottom = 47.999996
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("2_font")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
