@@ -17,6 +17,9 @@
 [ext_resource type="PackedScene" path="res://Scenes/GameOverUI.tscn" id="14_gover"]
 [ext_resource type="PackedScene" path="res://Scenes/CardTooltip.tscn" id="15_ctool"]
 [ext_resource type="PackedScene" path="res://Scenes/GameStartUI.tscn" id="16_gstart"]
+[ext_resource type="Script" uid="uid://b2sl4cf523458" path="res://Scripts/EnemyHand.gd" id="17_ehand"]
+[ext_resource type="PackedScene" path="res://Scenes/EnemyDeck.tscn" id="18_edeck"]
+[ext_resource type="PackedScene" path="res://Scenes/SettingsUI.tscn" id="19_settings"]
 
 [node name="Main" type="Node2D" unique_id=970825641]
 
@@ -67,13 +70,13 @@ vertical_alignment = 1
 script = ExtResource("12_enemyai")
 
 [node name="EnemyHand" type="Node2D" parent="Enemy" unique_id=599703798]
-visible = false
+script = ExtResource("17_ehand")
 
 [node name="EnemyCost" type="Node2D" parent="Enemy" unique_id=196782763]
 visible = false
 
-[node name="EnemyDeck" type="Node2D" parent="Enemy" unique_id=2042933217]
-visible = false
+[node name="EnemyDeck" parent="Enemy" unique_id=2042933217 instance=ExtResource("18_edeck")]
+position = Vector2(128, 190)
 
 [node name="EnemyTurnEndButton" type="Node2D" parent="Enemy" unique_id=1881401775]
 visible = false
@@ -138,3 +141,5 @@ position = Vector2(1440, 300)
 [node name="CardTooltip" parent="." unique_id=804836485 instance=ExtResource("15_ctool")]
 
 [node name="GameStartUI" parent="." unique_id=2061965947 instance=ExtResource("16_gstart")]
+
+[node name="SettingsUI" parent="." unique_id=100801750 instance=ExtResource("19_settings")]

@@ -117,3 +117,15 @@ static func build_faction_deck(faction: String, copies: int = 1) -> Array:
 			for i in range(copies):
 				deck.append(card_name)
 	return deck
+
+
+# Every distinct faction defined in CARDS above, in first-seen order
+# (e.g. ["Humans", "Orcs", "Skeletons", ...]). Used to populate the
+# race-selection dropdown in the settings menu.
+static func get_all_factions() -> Array:
+	var factions = []
+	for card_name in CARDS.keys():
+		var faction = get_faction(card_name)
+		if faction not in factions:
+			factions.append(faction)
+	return factions

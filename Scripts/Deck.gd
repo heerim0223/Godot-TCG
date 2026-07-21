@@ -18,6 +18,10 @@ var turn_manager_reference
 func _ready() -> void:
 	card_database_reference = preload("res://Scripts/CardDatabase.gd")
 
+	# The settings menu's "Race (Temporary)" option overrides whatever
+	# faction is set on this node in the editor.
+	deck_faction = GameSettings.player_faction
+
 	# Single-faction deck: 1 faction, N copies of each of its 4 cards
 	player_deck = card_database_reference.build_faction_deck(deck_faction, copies_per_card)
 	player_deck.shuffle()

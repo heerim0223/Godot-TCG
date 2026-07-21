@@ -12,9 +12,12 @@ const THINK_DELAY = 0.6
 const CARD_PLAY_DELAY = 0.5
 
 var enemy_deck: Array = []
-var enemy_hand: Array = []  # array of card_name strings; the enemy has no visible hand
+var enemy_hand: Array = []  # array of card_name strings backing the face-down EnemyHand visual
 var current_cost: int
 var card_database_reference
+
+@onready var enemy_hand_visual = get_node_or_null("../EnemyHand")
+@onready var enemy_deck_visual = get_node_or_null("../EnemyDeck")
 
 
 func _ready() -> void:
@@ -28,8 +31,11 @@ func _ready() -> void:
 	for slot in get_tree().get_nodes_in_group("enemy_card_slots"):
 		slot.set_slot_image(slot_back_texture)
 
-	# 적 덱 이미지가 존재한다면
-	# $CardSlotImage.texture = slot_back_texture
+	if enemy_hand_visual:
+		enemy_hand_visual.call_deferred("set_back_texture", slot_back_texture)
+	if enemy_deck_visual:
+		enemy_deck_visual.call_deferred("set_back_texture", slot_back_texture)
+		enemy_deck_visual.call_deferred("set_count", enemy_deck.size())
 
 	for i in range(STARTING_HAND_SIZE):
 		draw_to_hand()
@@ -39,6 +45,12 @@ func draw_to_hand() -> void:
 	if enemy_deck.size() == 0:
 		return
 	enemy_hand.append(enemy_deck.pop_front())
+	AudioManager.play_draw()
+
+	if enemy_deck_visual:
+		enemy_deck_visual.call_deferred("set_count", enemy_deck.size())
+	if enemy_hand_visual:
+		enemy_hand_visual.call_deferred("set_card_count", enemy_hand.size())
 
 
 # Called by TurnManager at the start of the enemy's turn. Runs the enemy's
@@ -92,6 +104,9 @@ func pick_playable_card() -> String:
 func play_card(card_name: String, slot) -> void:
 	enemy_hand.erase(card_name)
 	current_cost -= card_database_reference.CARDS[card_name][2]
+
+	if enemy_hand_visual:
+		enemy_hand_visual.set_card_count(enemy_hand.size())
 
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()

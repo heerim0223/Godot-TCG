@@ -19,6 +19,7 @@ config/icon="res://Assets/icon.svg"
 
 FX="*uid://biy2ip35dclqt"
 AudioManager="*uid://dpgbvsb5tqaak"
+GameSettings="*res://Scripts/GameSettings.gd"
 
 [display]
 
