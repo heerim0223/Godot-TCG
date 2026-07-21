@@ -86,22 +86,22 @@ visible = false
 [node name="CardSlotManager" type="Node2D" parent="GameManager" unique_id=723617271]
 
 [node name="CardSlot" parent="GameManager/CardSlotManager" unique_id=985104266 instance=ExtResource("2_pbw6q")]
-position = Vector2(480, 664)
+position = Vector2(480, 680)
 
 [node name="CardSlot2" parent="GameManager/CardSlotManager" unique_id=1287517970 instance=ExtResource("2_pbw6q")]
-position = Vector2(672, 664)
+position = Vector2(672, 680)
 
 [node name="CardSlot3" parent="GameManager/CardSlotManager" unique_id=1049272507 instance=ExtResource("2_pbw6q")]
-position = Vector2(864, 664)
+position = Vector2(864, 680)
 
 [node name="CardSlot4" parent="GameManager/CardSlotManager" unique_id=532090443 instance=ExtResource("2_pbw6q")]
-position = Vector2(1056, 664)
+position = Vector2(1056, 680)
 
 [node name="CardSlot5" parent="GameManager/CardSlotManager" unique_id=126534420 instance=ExtResource("2_pbw6q")]
-position = Vector2(1248, 664)
+position = Vector2(1248, 680)
 
 [node name="CardSlot6" parent="GameManager/CardSlotManager" unique_id=474932837 instance=ExtResource("2_pbw6q")]
-position = Vector2(1440, 664)
+position = Vector2(1440, 680)
 
 [node name="CardManager" type="Node2D" parent="GameManager" unique_id=541129001]
 script = ExtResource("1_rgh2o")
@@ -117,22 +117,22 @@ script = ExtResource("6_v1gob")
 [node name="EnemyCardSlotManager" type="Node2D" parent="GameManager" unique_id=183112319]
 
 [node name="EnemyCardSlot" parent="GameManager/EnemyCardSlotManager" unique_id=1001910031 instance=ExtResource("11_enslot")]
-position = Vector2(480, 300)
+position = Vector2(480, 408)
 
 [node name="EnemyCardSlot2" parent="GameManager/EnemyCardSlotManager" unique_id=1880655164 instance=ExtResource("11_enslot")]
-position = Vector2(672, 300)
+position = Vector2(672, 408)
 
 [node name="EnemyCardSlot3" parent="GameManager/EnemyCardSlotManager" unique_id=1639255328 instance=ExtResource("11_enslot")]
-position = Vector2(864, 300)
+position = Vector2(864, 408)
 
 [node name="EnemyCardSlot4" parent="GameManager/EnemyCardSlotManager" unique_id=1730908785 instance=ExtResource("11_enslot")]
-position = Vector2(1056, 300)
+position = Vector2(1056, 408)
 
 [node name="EnemyCardSlot5" parent="GameManager/EnemyCardSlotManager" unique_id=1119546134 instance=ExtResource("11_enslot")]
-position = Vector2(1248, 300)
+position = Vector2(1248, 408)
 
 [node name="EnemyCardSlot6" parent="GameManager/EnemyCardSlotManager" unique_id=1384982814 instance=ExtResource("11_enslot")]
-position = Vector2(1440, 300)
+position = Vector2(1440, 408)
 
 [node name="CRTOverlay" parent="." unique_id=270174636 instance=ExtResource("9_crtov")]
 
